@@ -38,8 +38,7 @@ def get_end_date_offset(df, end_date):
 	date_format =  "%m/%d/%y"
 	end = datetime.strptime(end_date, date_format)
 	last_column = datetime.strptime(df.columns[-1], date_format)
-	offset = max(0, (last_column-end).days)
-	return offset
+	return max(0, (last_column-end).days)
 
 
 def label_figure(x_values, y_values, mode, filename):
@@ -50,7 +49,7 @@ def label_figure(x_values, y_values, mode, filename):
 	plt.xlabel("Date (MM/DD/YY)")
 	plt.ylabel(f"{mode}")
 	plt.legend()
-	filename = filename if filename else f'{mode}_last_{days}.png'
+	filename = filename or f'{mode}_last_{days}.png'
 	plt.savefig(filename)
 	plt.close()
 

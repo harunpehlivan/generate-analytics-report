@@ -9,13 +9,13 @@ def load_relevant_data(us_data=True, mode=Mode.CASES):
 	#BASE_PATH = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'
 	BASE_PATH = './data/'
 	if us_data and mode == Mode.CASES:
-		PATH = BASE_PATH + 'time_series_covid19_confirmed_US.csv'
+		PATH = f'{BASE_PATH}time_series_covid19_confirmed_US.csv'
 	elif us_data and mode == Mode.DEATHS:
-		PATH = BASE_PATH + 'time_series_covid19_deaths_US.csv'
+		PATH = f'{BASE_PATH}time_series_covid19_deaths_US.csv'
 	elif not us_data and mode == Mode.CASES:
-		PATH = BASE_PATH + 'time_series_covid19_confirmed_global.csv'
+		PATH = f'{BASE_PATH}time_series_covid19_confirmed_global.csv'
 	elif not us_data and mode == Mode.DEATHS:
-		PATH = BASE_PATH + 'time_series_covid19_deaths_global.csv'
+		PATH = f'{BASE_PATH}time_series_covid19_deaths_global.csv'
 
 	return pd.read_csv(PATH)
 
@@ -100,7 +100,10 @@ abbrev_us_state = dict(map(reversed, us_state_abbrev.items()))
 
 # Simple test examples
 if __name__ == '__main__':
-    print("Wisconin --> WI?", us_state_abbrev['Wisconsin'] == 'WI')
-    print("WI --> Wisconin?", abbrev_us_state['WI'] == 'Wisconsin')
-    print("Number of entries (50 states, DC, 5 Territories) == 56? ", 56 == len(us_state_abbrev))
+	print("Wisconin --> WI?", us_state_abbrev['Wisconsin'] == 'WI')
+	print("WI --> Wisconin?", abbrev_us_state['WI'] == 'Wisconsin')
+	print(
+	    "Number of entries (50 states, DC, 5 Territories) == 56? ",
+	    len(us_state_abbrev) == 56,
+	)
 
