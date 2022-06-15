@@ -16,9 +16,9 @@ TEST_DATE = "10/20/20"
 
 def create_title(day, pdf):
   # Unicode is not yet supported in the py3k version; use windows-1252 standard font
-  pdf.set_font('Arial', '', 24)  
+  pdf.set_font('Arial', '', 24)
   pdf.ln(60)
-  pdf.write(5, f"Covid Analytics Report")
+  pdf.write(5, "Covid Analytics Report")
   pdf.ln(10)
   pdf.set_font('Arial', '', 16)
   pdf.write(4, f'{day}')
@@ -81,7 +81,9 @@ def create_analytics_report(day=TEST_DATE, filename="report.pdf"):
 
 
 if __name__ == '__main__':
-  yesterday = (datetime.today() - timedelta(days=1)).strftime("%m/%d/%y").replace("/0","/").lstrip("0")
+  yesterday = ((
+      datetime.now() - timedelta(days=1)).strftime("%m/%d/%y").replace(
+          "/0", "/").lstrip("0"))
   yesterday = "10/10/20" # Uncomment line for testing
-  
+
   create_analytics_report(yesterday)

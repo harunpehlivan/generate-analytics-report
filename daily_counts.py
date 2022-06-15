@@ -23,7 +23,7 @@ def plot_data(df, places, day, mode, column, filename):
 	colors = plt.cm.Reds(np.linspace(0.35,0.65,n))
 
 	values = []
-	for index, place in enumerate(places):
+	for place in places:
 		cumulative_data = df[df[column] == place]
 		start_column = cumulative_data.columns.get_loc("1/22/20")
 		counts = cumulative_data.iloc[:, start_column:].diff(axis=1) # Converts from total case count to daily case count
@@ -35,7 +35,7 @@ def plot_data(df, places, day, mode, column, filename):
 def label_figure(day, mode, filename):
 	plt.title(f'{mode}, {day}')
 	plt.ylabel(f"{mode}")
-	filename = filename if filename else f'{mode}_{day.replace("/", "-")}.png'
+	filename = filename or f'{mode}_{day.replace("/", "-")}.png'
 	plt.savefig(filename)
 	plt.close()
 
